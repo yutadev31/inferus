@@ -1,4 +1,8 @@
+use std::fs;
+
+use anyhow::Context;
 use clap::{Parser, Subcommand};
+use inferus_format::format_markdown;
 
 #[derive(Debug, Parser)]
 struct Args {
@@ -27,12 +31,47 @@ enum Command {
     },
 }
 
-fn run_format(target: Vec<String>, check_only: bool, verbose: bool) {
-    if verbose {
-        println!("Formatting files: {:?}", target.join(", "));
+fn get_file_list(target: Vec<String>) -> Vec<String> {
+    let mut files = Vec::new();
+
+    for item in target {
+        if !item.ends_with(".md") {
+            println!("Warning: Skipping non-markdown file: {}", item);
+            continue;
+        }
+        files.push(item);
     }
 
-    todo!()
+    if files.is_empty() {
+        eprintln!("No markdown files found");
+        std::process::exit(1);
+    }
+
+    files
+}
+
+fn format_file(path: &str) -> anyhow::Result<()> {
+    let text = fs::read_to_string(path).context(format!("Failed to read file: {}", path))?;
+    let formated = format_markdown(&text);
+    fs::write(path, formated).context(format!("Failed to write file: {}", path))?;
+
+    Ok(())
+}
+
+fn run_format(target: Vec<String>, check_only: bool, verbose: bool) {
+    if verbose {
+        println!("Formatting files: {}", target.join(", "));
+    }
+
+    let files = get_file_list(target);
+
+    for path in files {
+        println!("test0");
+        match format_file(&path) {
+            Ok(()) => println!("Formatted file: {}", path),
+            Err(e) => eprintln!("Error formatting file {}: {}", path, e),
+        }
+    }
 }
 
 fn run_lint(target: Vec<String>, verbose: bool) {

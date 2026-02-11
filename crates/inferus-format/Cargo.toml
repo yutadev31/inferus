@@ -1,5 +1,5 @@
 [package]
-name = "inferus-cli"
+name = "inferus-format"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -7,6 +7,4 @@ authors.workspace = true
 repository.workspace = true
 
 [dependencies]
-anyhow.workspace = true
-clap.workspace = true
-inferus-format.workspace = true
+inferus-parser.workspace = true

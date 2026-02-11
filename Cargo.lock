@@ -53,6 +53,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "anyhow"
+version = "1.0.101"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f0e0fee31ef5ed1ba1316088939cea399010ed7731dba877ed44aeb407a75ea"
+
+[[package]]
 name = "clap"
 version = "4.5.58"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -120,7 +126,16 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 name = "inferus-cli"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "clap",
+ "inferus-format",
+]
+
+[[package]]
+name = "inferus-format"
+version = "0.1.0"
+dependencies = [
+ "inferus-parser",
 ]
 
 [[package]]
