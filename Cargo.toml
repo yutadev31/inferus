@@ -1,0 +1,12 @@
+[workspace]
+resolver = "3"
+members = ["crates/inferus-parser"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["Yuta <yuta256dev@gmail.com>"]
+repository = "https://github.com/yutadev31/inferus.git"
+
+[workspace.dependencies]
