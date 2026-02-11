@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/inferus-parser"]
+members = ["crates/inferus-cli", "crates/inferus-parser"]
 
 [workspace.package]
 version = "0.1.0"
@@ -10,4 +10,5 @@ authors = ["Yuta <yuta256dev@gmail.com>"]
 repository = "https://github.com/yutadev31/inferus.git"
 
 [workspace.dependencies]
+clap = { version = "4.5.58", features = ["derive"] }
 rowan = "0.16.1"
