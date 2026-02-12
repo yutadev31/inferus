@@ -66,7 +66,6 @@ fn run_format(target: Vec<String>, check_only: bool, verbose: bool) {
     let files = get_file_list(target);
 
     for path in files {
-        println!("test0");
         match format_file(&path) {
             Ok(()) => println!("Formatted file: {}", path),
             Err(e) => eprintln!("Error formatting file {}: {}", path, e),
